@@ -1,0 +1,10 @@
+Row 8	r h 0 0 k 0 h r 
+Row 7	p 0 0 0 p p p p 
+Row 6	0 0 p 0 0 0 0 0 
+Row 5	0 0 0 p 0 0 0 0 
+Row 4	0 0 0 0 P 0 b 0 
+Row 3	H 0 0 P 0 P 0 0 
+Row 2	P 0 0 q 0 0 P P 
+Row 1	R 0 B Q K 0 0 R 
+ File	A B C D E F G H
+

@@ -1,0 +1,45 @@
+The bishop is in position 30
+In this position the attacks look like
+Row 8	0 0 1 0 0 0 0 0 
+Row 7	0 0 0 1 0 0 0 0 
+Row 6	0 0 0 0 1 0 0 0 
+Row 5	0 0 0 0 0 1 0 1 
+Row 4	0 0 0 0 0 0 0 0 
+Row 3	0 0 0 0 0 1 0 1 
+Row 2	0 0 0 0 0 0 0 0 
+Row 1	0 0 0 0 0 0 0 0 
+ File	A B C D E F G H
+
+Row 8	1 1 0 0 1 0 1 1 
+Row 7	1 0 0 0 1 1 1 1 
+Row 6	0 0 1 0 0 0 0 0 
+Row 5	0 0 0 1 0 0 0 0 
+Row 4	0 0 0 0 1 0 1 0 
+Row 3	1 0 0 1 0 1 0 0 
+Row 2	1 0 0 1 0 0 1 1 
+Row 1	1 0 1 1 1 0 0 1 
+ File	A B C D E F G H
+
+Finally we get to all of the attacks combined
+This looks like
+Row 8	0 1 1 1 1 1 1 1 
+Row 7	1 1 0 1 1 0 0 1 
+Row 6	1 0 1 0 1 1 0 1 
+Row 5	1 0 0 0 0 1 1 1 
+Row 4	0 1 0 0 0 1 0 0 
+Row 3	0 0 1 1 1 1 0 1 
+Row 2	1 1 1 0 1 1 1 0 
+Row 1	0 0 1 1 1 0 0 0 
+ File	A B C D E F G H
+
+The king bitboard looks like
+Row 8	0 0 0 0 0 0 0 0 
+Row 7	0 0 0 0 0 0 0 0 
+Row 6	0 0 0 0 0 0 0 0 
+Row 5	0 0 0 0 0 0 0 0 
+Row 4	0 0 0 0 0 0 0 0 
+Row 3	0 0 0 0 0 0 0 0 
+Row 2	0 0 0 0 0 0 0 0 
+Row 1	0 0 0 0 1 0 0 0 
+ File	A B C D E F G H
+

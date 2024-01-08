@@ -1,0 +1,8 @@
+r h 0 0 k 0 h r 
+p 0 0 0 p p p p 
+0 0 p 0 0 0 0 0 
+0 0 0 p 0 0 0 0 
+0 0 0 0 P 0 b 0 
+H 0 0 P 0 P 0 0 
+P 0 0 q 0 0 P P 
+R 0 B Q K 0 0 R
