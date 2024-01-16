@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include <sstream>
 #include "move.h"
 
 typedef uint64_t U64;
@@ -114,25 +115,35 @@ class Board
 {
 public:
     Board();
+
     void resetBoard();
+    Board createWithModifiction() const;
+    void loadFromFEN(const std::string &fen);
 
     std::vector<Move> generateLegalMoves() const;
     std::vector<Move> generatePseudoLegalMoves() const;
-    std::vector<Move> generateEvasionMoves() const;
-    bool determineIfKingIsInCheck() const;
-    void printBoard() const;
-    void setBoard(int turn);
+    std::vector<Move> generatePawnPseudoLegalMoves(int index, U64 allPieces, U64 friendlyPieces, U64 enemyPieces) const;
+    bool determineIfKingIsInCheck(int kingColour, int square) const;
+    void printBoard(std::ofstream &outputFile) const;
+    void printAllInformation(std::ofstream &output) const;
+    void setBoard(int pieceToPlay);
+    void setEnPassantSquare(int square);
+    void setCastlingRights(int caslingRight, bool right);
+    void applyMove(const Move &move);
+    int positionToIndex(const std::string &position);
 
 private:
     // Private member functions
     std::string getPieceAt(int pos) const;
-    int charToPieceIndex(char pieceChar);
+    int charToPieceIndex(char pieceChar) const;
 
     // Private member variables
     U64 bitboards[12];
     int turn;
     bool castlingRights[4];
     int enPassantSquare;
+    int halfMoveClock;
+    int fullMoveNumber;
 };
 
 #endif

@@ -1,3 +1,6 @@
+#include <string>
+#include <iostream>
+#include <sstream>
 #include "move.h"
 
 Move::Move()
@@ -48,4 +51,18 @@ bool Move::getIsEnPassant() const
 bool Move::getIsCastling() const
 {
     return isCastling;
+}
+
+std::string Move::printMove() const
+{
+    std::ostringstream oss;
+    oss << "Starting Square: " << startSquare
+        << "\nEnd Square: " << endSquare
+        << "\nMoved Piece: " << movedPiece
+        << "\nCaptured Piece: " << capturedPiece
+        << "\nPromotion Piece: " << promotionPiece
+        << "\nEn Passant: " << isEnPassant
+        << "\nCastling: " << isCastling << "\n";
+
+    return oss.str();
 }

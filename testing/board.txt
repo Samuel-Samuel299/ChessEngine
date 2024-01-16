@@ -1,0 +1,30 @@
+Board 1
+r n b q k b n r 
+p p p p p p p p 
+0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 
+P P P P P P P P 
+R N B Q K B N R
+
+
+Board 2 
+0 0 r 0 0 0 0 0
+p 0 0 k p 0 0 0
+0 0 0 0 0 0 R 0
+q p 0 0 0 p 0 0
+0 0 0 P p 0 0 0
+0 Q P 0 0 0 0 0
+P 0 0 0 0 P 0 0
+0 0 R 0 K 0 0 r
+
+Board 3
+r 0 0 q k b n r 
+p p p 0 p p p p 
+0 0 n 0 0 0 0 0 
+0 0 0 p 0 b 0 0 
+0 0 0 P 0 B 0 0 
+0 0 0 0 P 0 0 0 
+P P P 0 0 P P P 
+R N 0 Q K B N R

@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "board.h"
 #include "attackTables.h"
+#include "move.h"
 
 typedef U64 uint64_t;
 
@@ -13,7 +14,7 @@ using namespace std;
 U64 readBitboard(int startLine)
 {
     startLine--;
-    ifstream inputFile("input.txt");
+    ifstream inputFile("testing/input.txt");
 
     string line = "";
     for (int i = 0; i < startLine; ++i)
@@ -80,20 +81,28 @@ int main(int argc, char *argv[])
     ofstream output("output.txt", ios::trunc);
     output.close();
 
-    ofstream outputFile("testing/printBoard.txt", ios::trunc);
-    output.close();
-
+    // Setting up the different attacks
     attackTables::initializeLeaping();
     attackTables::initialiseBishopAttacks();
     attackTables::initialiseRookAttacks();
 
+    // Setting up the board
+    std::string fen = "2kr4/1p1b1p2/2p1p2p/1B2B3/5QP1/b7/p1PP2qP/K2R1R2 w - - 2 22";
     Board board = Board();
-    board.setBoard(0);
-    board.printBoard();
+    board.loadFromFEN(fen);
+    output.open("output.txt", ios::app);
+    output << "We set the board up in the following way\n";
+    board.printAllInformation(output);
 
-    bool isCheck = board.determineIfKingIsInCheck();
-    cout << "Statement: The king is in check\n"
-         << isCheck << endl;
+    vector<Move> pseudoLegalMoves;
+    vector<Move> legalMoves;
 
+    pseudoLegalMoves = board.generatePseudoLegalMoves();
+    legalMoves = board.generateLegalMoves();
+
+    int pseudoSize = pseudoLegalMoves.size();
+    int legalSize = legalMoves.size();
+
+    output.close();
     return 0;
 }

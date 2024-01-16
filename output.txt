@@ -1,45 +1,22 @@
-The bishop is in position 30
-In this position the attacks look like
-Row 8	0 0 1 0 0 0 0 0 
-Row 7	0 0 0 1 0 0 0 0 
-Row 6	0 0 0 0 1 0 0 0 
-Row 5	0 0 0 0 0 1 0 1 
-Row 4	0 0 0 0 0 0 0 0 
-Row 3	0 0 0 0 0 1 0 1 
-Row 2	0 0 0 0 0 0 0 0 
-Row 1	0 0 0 0 0 0 0 0 
+We set the board up in the following way
+-------------------------------------------------
+
+The Information of the board is as follows: 
+En Passant Square: -1
+Castling rights 0: 0
+Castling rights 1: 0
+Castling rights 2: 0
+Castling rights 3: 0
+It is white to play and the board looks like
+Row 8	0 0 k r 0 0 0 0 
+Row 7	0 p 0 b 0 p 0 0 
+Row 6	0 0 p 0 p 0 0 p 
+Row 5	0 B 0 0 B 0 0 0 
+Row 4	0 0 0 0 0 Q P 0 
+Row 3	b 0 0 0 0 0 0 0 
+Row 2	p 0 P P 0 0 q P 
+Row 1	K 0 0 R 0 R 0 0 
  File	A B C D E F G H
 
-Row 8	1 1 0 0 1 0 1 1 
-Row 7	1 0 0 0 1 1 1 1 
-Row 6	0 0 1 0 0 0 0 0 
-Row 5	0 0 0 1 0 0 0 0 
-Row 4	0 0 0 0 1 0 1 0 
-Row 3	1 0 0 1 0 1 0 0 
-Row 2	1 0 0 1 0 0 1 1 
-Row 1	1 0 1 1 1 0 0 1 
- File	A B C D E F G H
-
-Finally we get to all of the attacks combined
-This looks like
-Row 8	0 1 1 1 1 1 1 1 
-Row 7	1 1 0 1 1 0 0 1 
-Row 6	1 0 1 0 1 1 0 1 
-Row 5	1 0 0 0 0 1 1 1 
-Row 4	0 1 0 0 0 1 0 0 
-Row 3	0 0 1 1 1 1 0 1 
-Row 2	1 1 1 0 1 1 1 0 
-Row 1	0 0 1 1 1 0 0 0 
- File	A B C D E F G H
-
-The king bitboard looks like
-Row 8	0 0 0 0 0 0 0 0 
-Row 7	0 0 0 0 0 0 0 0 
-Row 6	0 0 0 0 0 0 0 0 
-Row 5	0 0 0 0 0 0 0 0 
-Row 4	0 0 0 0 0 0 0 0 
-Row 3	0 0 0 0 0 0 0 0 
-Row 2	0 0 0 0 0 0 0 0 
-Row 1	0 0 0 0 1 0 0 0 
- File	A B C D E F G H
-
+-------------------------------------------------
+    

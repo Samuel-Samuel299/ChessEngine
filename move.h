@@ -5,7 +5,7 @@ class Move
 {
 public:
     Move();
-    Move(int startSquare, int endSquare, int movedPiece, int capturedPiece, int promotionPiece = 0, bool isEnPassant = false, bool isCastling = false);
+    Move(int startSquare, int endSquare, int movedPiece, int capturedPiece, int promotionPiece = 12, bool isEnPassant = false, bool isCastling = false);
 
     int getStartSquare() const;
     int getEndSquare() const;
@@ -14,6 +14,7 @@ public:
     int getPromotionPiece() const;
     bool getIsEnPassant() const;
     bool getIsCastling() const;
+    std::string printMove() const;
 
 private:
     int startSquare;

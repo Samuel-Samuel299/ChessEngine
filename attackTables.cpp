@@ -95,16 +95,6 @@ void attackTables::initialiseBishopAttacks()
             possibleMoves = determineBishopPossibleMoves(blockerBitboard, square);
             key = (blockerBitboard * BISHOP_MAGIC[square]) >> (64 - BISHOP_INDEX_BITS[square]);
             BISHOP_TABLE[square][key] = possibleMoves;
-            // std::ofstream outputFile("output.txt", std::ios::app);
-            // outputFile << "When the bishop is on square " << square << " which looks like this\n";
-            // U64 bishop = 0ULL;
-            // set_bit(bishop, square);
-            // printBitboard(bishop, outputFile);
-            // outputFile << "And the blocker config is \n";
-            // printBitboard(blockerBitboard, outputFile);
-            // outputFile << "Then the bishop attacks are\n";
-            // printBitboard(possibleMoves, outputFile);
-            // outputFile.close();
         }
     }
 }
@@ -343,48 +333,29 @@ void attackTables::initialiseRookRayAndMask()
         ROOK_MASKS[1][i] = ROOK_RAYS[1][i] & ~edgeMask;
         ROOK_MASKS[2][i] = ROOK_RAYS[2][i] & ~edgeMask;
         ROOK_MASKS[3][i] = ROOK_RAYS[3][i] & ~edgeMask;
-
-        std::ofstream outputFile("testing/testingRayAndMask.txt", std::ios::app);
-        outputFile << "------------------\nWhen the rook is on square " << i << " the rays and mask is as follows\n";
-
-        // Assuming printBitboard can take std::ofstream as an argument
-        printBitboard(ROOK_MASKS[0][i] | ROOK_MASKS[1][i] | ROOK_MASKS[2][i] | ROOK_MASKS[3][i], outputFile);
-        printBitboard(ROOK_RAYS[0][i] | ROOK_RAYS[1][i] | ROOK_RAYS[2][i] | ROOK_RAYS[3][i], outputFile);
-
         int num = ROOK_INDEX_BITS[i];
-        outputFile << "The number of combinations is " << num << "\n";
-        outputFile.close(); // Close the file after all writing is done
     }
 }
 
 void attackTables::determineRookRelevantSquares()
 {
-    std::ofstream outputSquares("testing/testingRelevantSquares.txt", std::ios::app);
     int count = 0;
     for (int j = 0; j < 64; j++)
     {
         U64 rookMask = (ROOK_MASKS[0][j] | ROOK_MASKS[1][j] | ROOK_MASKS[2][j] | ROOK_MASKS[3][j]);
-        outputSquares << "-------------------------------------------------------------\nThe square is rook is on is " << j << "\nThis means that the mask will look like this\n\n";
-        printBitboard(rookMask, outputSquares);
         count = 0;
         for (int i = 0; i < 64; i++)
         {
-            outputSquares << "**********************************************************\nThe square we are checking is " << i << "\nIt looks like this on the board\n";
             U64 createBoard = 0ULL;
             set_bit(createBoard, i);
-            printBitboard(createBoard, outputSquares);
 
-            outputSquares << "The rookMask ANDED with the create board equals " << (rookMask & createBoard) << "\n";
             if ((rookMask & createBoard) != 0)
             {
                 ROOK_RELEVANT_SQUARES[count][j] = i;
-                outputSquares << "The " << count << "th relevant position is " << i << "\n";
                 count++;
-                outputSquares << "The count variable is then incremented " << count << "\n\n\n";
             }
         }
     }
-    outputSquares.close();
 }
 
 U64 attackTables::determineRookPossibleMoves(U64 blockerBitboard, int pos)
