@@ -1,13 +1,15 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include <cstdint>
 #include <string>
 #include <vector>
 #include <sstream>
+#include <array>
+#include <chrono>
 #include "move.h"
 
 typedef uint64_t U64;
+typedef std::vector<Move> MoveVec;
 
 // Constants
 const U64 FILE_A = 0x0101010101010101ULL;
@@ -115,26 +117,39 @@ class Board
 {
 public:
     Board();
-
     void resetBoard();
-    Board createWithModifiction() const;
     void loadFromFEN(const std::string &fen);
 
-    std::vector<Move> generateLegalMoves() const;
-    std::vector<Move> generatePseudoLegalMoves() const;
-    std::vector<Move> generatePawnPseudoLegalMoves(int index, U64 allPieces, U64 friendlyPieces, U64 enemyPieces) const;
+    std::vector<Move> generateLegalMoves();
     bool determineIfKingIsInCheck(int kingColour, int square) const;
-    void printBoard(std::ofstream &outputFile) const;
     void printAllInformation(std::ofstream &output) const;
+
+    // Getters and Setters
+    int getTurn() const { return turn; }
+    const U64 *getBitboards() const { return bitboards; }
+    std::array<bool, 4> getCastlingRights() const { return {castlingRights[0], castlingRights[1], castlingRights[2], castlingRights[3]}; }
+    int getEnPassantSquare() const { return enPassantSquare; }
+    int getHalfMoveClock() const { return halfMoveClock; }
+    int getFullMoveNumber() const { return fullMoveNumber; }
     void setBoard(int pieceToPlay);
     void setEnPassantSquare(int square);
     void setCastlingRights(int caslingRight, bool right);
+
+    // Function for making moves
     void applyMove(const Move &move);
+    void undoMove(const Move &move, const std::array<bool, 4> &prevCastlingRights, int prevEnPassantSquare, int prevHalfMoveClock);
+
     int positionToIndex(const std::string &position);
+    long long getTotalTimeSpentInPseudoFunction();
+    long long getTotalTimeSpentInLegalFunction();
+    long long getTotalTimeSpentInOtherFunction();
 
 private:
     // Private member functions
+    std::vector<Move> generatePseudoLegalMoves() const;
+    void generatePawnPseudoLegalMoves(MoveVec &pawnMoves, U64 allPieces, U64 friendlyPieces, U64 enemyPieces) const;
     std::string getPieceAt(int pos) const;
+    int getPieceIntAtPosition(int pos) const;
     int charToPieceIndex(char pieceChar) const;
 
     // Private member variables
@@ -144,6 +159,9 @@ private:
     int enPassantSquare;
     int halfMoveClock;
     int fullMoveNumber;
+    static std::chrono::microseconds totalTimeSpentInPseudo;
+    static std::chrono::microseconds totalTimeSpentInLegal;
+    static std::chrono::microseconds totalTimeSpentInOther;
 };
 
 #endif

@@ -2,12 +2,13 @@
 #include <iostream>
 #include <sstream>
 #include "move.h"
+#include "minimaxEngine.h"
 
 Move::Move()
 {
 }
 
-Move::Move(int startSquare, int endSquare, int movedPiece, int capturedPiece, int promotionPiece, bool isEnPassant, bool isCastling)
+Move::Move(int startSquare, int endSquare, int movedPiece, int capturedPiece, int promotionPiece, bool isEnPassant, bool isCastling, double score)
 {
     this->startSquare = startSquare;
     this->endSquare = endSquare;
@@ -16,41 +17,7 @@ Move::Move(int startSquare, int endSquare, int movedPiece, int capturedPiece, in
     this->promotionPiece = promotionPiece;
     this->isEnPassant = isEnPassant;
     this->isCastling = isCastling;
-}
-
-int Move::getStartSquare() const
-{
-    return startSquare;
-}
-
-int Move::getEndSquare() const
-{
-    return endSquare;
-}
-
-int Move::getMovedPiece() const
-{
-    return movedPiece;
-}
-
-int Move::getCapturedPiece() const
-{
-    return capturedPiece;
-}
-
-int Move::getPromotionPiece() const
-{
-    return promotionPiece;
-}
-
-bool Move::getIsEnPassant() const
-{
-    return isEnPassant;
-}
-
-bool Move::getIsCastling() const
-{
-    return isCastling;
+    this->score = score;
 }
 
 std::string Move::printMove() const
@@ -65,4 +32,23 @@ std::string Move::printMove() const
         << "\nCastling: " << isCastling << "\n";
 
     return oss.str();
+}
+
+void Move::setMoveScore()
+{
+    double capture = 0;
+
+    if (capturedPiece != 12)
+    {
+        if (abs(pieceValues[movedPiece]) < abs(pieceValues[capturedPiece]))
+        {
+            capture = abs(pieceValues[movedPiece]) - abs(pieceValues[capturedPiece]);
+        }
+        else if (abs(pieceValues[movedPiece]) == abs(pieceValues[capturedPiece]))
+        {
+            capture = 1;
+        }
+    }
+
+    score = capture;
 }

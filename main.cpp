@@ -3,9 +3,11 @@
 #include <sstream>
 #include <string>
 #include <stdio.h>
+#include <chrono>
 #include "board.h"
 #include "attackTables.h"
 #include "move.h"
+#include "minimaxEngine.h"
 
 typedef U64 uint64_t;
 
@@ -77,9 +79,14 @@ void printBitboard(U64 bitboard)
 
 int main(int argc, char *argv[])
 {
+    auto start = std::chrono::high_resolution_clock::now();
+
     // Open and immediately close the file to clear its contents.
     ofstream output("output.txt", ios::trunc);
     output.close();
+
+    ofstream output1("output1.txt", ios::trunc);
+    output1.close();
 
     // Setting up the different attacks
     attackTables::initializeLeaping();
@@ -87,22 +94,26 @@ int main(int argc, char *argv[])
     attackTables::initialiseRookAttacks();
 
     // Setting up the board
-    std::string fen = "2kr4/1p1b1p2/2p1p2p/1B2B3/5QP1/b7/p1PP2qP/K2R1R2 w - - 2 22";
+    std::string fen = "5rk1/1p3pp1/1p1Rb2p/1B2p3/8/4P3/rPP2PPP/5RK1 w - - 0 20";
     Board board = Board();
     board.loadFromFEN(fen);
-    output.open("output.txt", ios::app);
-    output << "We set the board up in the following way\n";
-    board.printAllInformation(output);
+    output1.open("output1.txt", std::ios::app);
+    board.printAllInformation(output1);
 
-    vector<Move> pseudoLegalMoves;
-    vector<Move> legalMoves;
+    MinimaxEngine minimax = MinimaxEngine(3);
+    Move move = minimax.findBestMove(board, 5);
+    board.printAllInformation(output1);
+    output1 << move.printMove() << "\n";
 
-    pseudoLegalMoves = board.generatePseudoLegalMoves();
-    legalMoves = board.generateLegalMoves();
-
-    int pseudoSize = pseudoLegalMoves.size();
-    int legalSize = legalMoves.size();
-
-    output.close();
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+    std::cout << "Time taken for whole execution: "
+              << duration.count() << " milliseconds" << std::endl;
+    long long time = board.getTotalTimeSpentInPseudoFunction();
+    cout << "Time spent in the pseudo function " << (time / 1000.0) << " milliseconds" << endl;
+    long long timeLegal = board.getTotalTimeSpentInLegalFunction();
+    cout << "Time spent in the legal function " << (timeLegal / 1000.0) << " milliseconds" << endl;
+    long long otherTime = board.getTotalTimeSpentInOtherFunction();
+    cout << "Time spent determining bishop pseudo moves " << (otherTime / 1000.0) << " milliseconds" << endl;
     return 0;
 }

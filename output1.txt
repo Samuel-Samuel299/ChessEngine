@@ -1,0 +1,48 @@
+
+The Information of the board is as follows: 
+En Passant Square: -1
+Castling rights 0: 0
+Castling rights 1: 0
+Castling rights 2: 0
+Castling rights 3: 0
+It is white to play and the board looks like
+Row 8	0 0 0 0 0 r k 0 
+Row 7	0 p 0 0 0 p p 0 
+Row 6	0 p 0 R b 0 0 p 
+Row 5	0 B 0 0 p 0 0 0 
+Row 4	0 0 0 0 0 0 0 0 
+Row 3	0 0 0 0 P 0 0 0 
+Row 2	r P P 0 0 P P P 
+Row 1	0 0 0 0 0 R K 0 
+ File	A B C D E F G H
+
+
+
+
+The Information of the board is as follows: 
+En Passant Square: -1
+Castling rights 0: 0
+Castling rights 1: 0
+Castling rights 2: 0
+Castling rights 3: 0
+It is white to play and the board looks like
+Row 8	0 0 0 0 0 r k 0 
+Row 7	0 p 0 0 0 p p 0 
+Row 6	0 p 0 R b 0 0 p 
+Row 5	0 B 0 0 p 0 0 0 
+Row 4	0 0 0 0 0 0 0 0 
+Row 3	0 0 0 0 P 0 0 0 
+Row 2	r P P 0 0 P P P 
+Row 1	0 0 0 0 0 R K 0 
+ File	A B C D E F G H
+
+
+
+Starting Square: 5
+End Square: 1
+Moved Piece: 3
+Captured Piece: 12
+Promotion Piece: 12
+En Passant: 0
+Castling: 0
+
