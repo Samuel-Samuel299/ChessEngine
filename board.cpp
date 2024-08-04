@@ -165,7 +165,7 @@ std::vector<Move> Board::generateLegalMoves()
     int prevEnPassantSquare = enPassantSquare;
     int prevHalfMoveClock = halfMoveClock;
 
-    auto start = std::chrono::high_resolution_clock::now();
+    // auto start = std::chrono::high_resolution_clock::now();
     // Board board = *this;
     for (int i = 0; i < pseudoLegalMoves.size(); i++)
     {
@@ -180,16 +180,16 @@ std::vector<Move> Board::generateLegalMoves()
 
     std::sort(legalMoves.begin(), legalMoves.end(), compareMoves);
 
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    totalTimeSpentInLegal += duration;
+    // auto stop = std::chrono::high_resolution_clock::now();
+    // auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    // totalTimeSpentInLegal += duration;
 
     return legalMoves;
 }
 
 std::vector<Move> Board::generatePseudoLegalMoves() const
 {
-    auto start = std::chrono::high_resolution_clock::now();
+    // auto start = std::chrono::high_resolution_clock::now();
     std::vector<Move> pseudoLegalMoves;
     int index = turn * 6;
 
@@ -236,7 +236,7 @@ std::vector<Move> Board::generatePseudoLegalMoves() const
     }
     index++;
 
-    auto start1 = std::chrono::high_resolution_clock::now();
+    // auto start1 = std::chrono::high_resolution_clock::now();
     // Generate all of the pseudo legal bishop moves
     U64 bishops = bitboards[index];
     int bishopPosition = pop_LSB(bishops);
@@ -264,9 +264,9 @@ std::vector<Move> Board::generatePseudoLegalMoves() const
         bishopPosition = pop_LSB(bishops);
     }
     index++;
-    auto stop1 = std::chrono::high_resolution_clock::now();
-    auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(stop1 - start1);
-    totalTimeSpentInOther += duration1;
+    // auto stop1 = std::chrono::high_resolution_clock::now();
+    // auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(stop1 - start1);
+    // totalTimeSpentInOther += duration1;
 
     // Generate all of the pseudo legal rook moves
     U64 rooks = bitboards[index];
@@ -439,9 +439,9 @@ std::vector<Move> Board::generatePseudoLegalMoves() const
         }
     }
 
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    totalTimeSpentInPseudo += duration;
+    // auto stop = std::chrono::high_resolution_clock::now();
+    // auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    // totalTimeSpentInPseudo += duration;
     return pseudoLegalMoves;
 }
 
